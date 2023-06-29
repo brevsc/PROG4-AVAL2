@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../screens/about_us.dart';
-import '../screens/feed.dart';
+import '../screens/homepage.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -12,7 +12,6 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int feed = 0;
   int team = 1;
-  Widget currentScreen = const HomePage();
 
   @override
   Widget build(BuildContext context) {
