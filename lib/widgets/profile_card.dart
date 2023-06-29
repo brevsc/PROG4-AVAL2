@@ -1,40 +1,4 @@
 import 'package:flutter/material.dart';
-import '../entities/profile.dart';
-
-class AboutUsPage extends StatelessWidget {
-  const AboutUsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    List<Profile> profiles = [
-      Profile('Heron Nepomuceno', 'Github: HeronNepomuceno', 'assets/images/heron.jpeg'),
-      Profile('Breno Vasconcelos', 'Github: brevsc', 'assets/images/breno.jpeg'),
-      Profile('Dymas Cunha', 'Github: dymas', 'assets/images/dymas.jpeg'),
-    ];
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sobre nós'),
-      ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 48.0),
-          child: ListView.builder(
-            itemCount: profiles.length,
-            itemBuilder: (context, index) {
-              Profile profile = profiles[index];
-              return ProfileCard(
-                name: profile.name,
-                description: profile.description,
-                imageUrl: profile.imageUrl,
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class ProfileCard extends StatelessWidget {
   final String name;

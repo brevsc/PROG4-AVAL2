@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../utils/get_images.dart';
 import '../entities/apod.dart';
+import '../widgets/bottom_navigation.dart';
+import '../utils/get_images.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -44,6 +45,7 @@ class HomePage extends StatelessWidget {
           }
         },
       ),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }
