@@ -9,7 +9,7 @@ class ImageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final copyright = apod.copyright ?? 'Unknow Artist';
+    final copyright = apod.copyright ?? 'Unknown Author';
 
     return Scaffold(
       appBar: AppBar(title: const Text('Image')),

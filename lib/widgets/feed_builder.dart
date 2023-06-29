@@ -28,13 +28,7 @@ class FeedBuilder extends StatelessWidget {
                 final apod = images[index];
                 return ListTile(
                     title: Text(apod.title),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(apod.date),
-                        Text(apod.copyright ?? 'Unknown'),
-                      ],
-                    ),
+                    subtitle: Text(apod.date),
                     leading: Image.network(apod.imageUrl),
                     onTap: () => Navigator.push(
                         context,
