@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import '../entities/apod.dart';
 import '../screens/image.dart';
-import '../utils/get_images.dart';
 
 class FeedBuilder extends StatelessWidget {
-  const FeedBuilder({
-    super.key,
-    required int? quantity,
-  }) : _quantity = quantity;
+  final int? quantity;
+  final Future<List<Apod>?> imagesFuture;
 
-  final int? _quantity;
+  const FeedBuilder({super.key, this.quantity, required this.imagesFuture});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Apod>?>(
-      future: getImages(),
+      future: imagesFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -23,7 +20,7 @@ class FeedBuilder extends StatelessWidget {
         } else if (snapshot.hasData) {
           final images = snapshot.data!;
           return ListView.builder(
-              itemCount: _quantity,
+              itemCount: quantity ?? 20,
               itemBuilder: (context, index) {
                 final apod = images[index];
                 return ListTile(

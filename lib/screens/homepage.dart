@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../entities/apod.dart';
 import '../utils/get_images.dart';
 import '../widgets/choose_quantity.dart';
 import '../widgets/bottom_navigation.dart';
@@ -13,10 +14,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int? _quantity;
+  late Future<List<Apod>?> _imagesFuture;
+
+  _HomePageState() {
+    _imagesFuture = getImages();
+  }
 
   Future<void> _refreshData() async {
-    setState(() async {
-      await getImages();
+    setState(() {
+      _imagesFuture = getImages();
     });
   }
 
@@ -30,11 +36,16 @@ class _HomePageState extends State<HomePage> {
               quantity: _quantity ?? 20,
               onChanged: (int? value) => setState(() {
                     _quantity = value;
-                  }))
+                  })),
+          IconButton(
+            onPressed: _refreshData,
+            icon: const Icon(Icons.refresh),
+          ),
         ],
       ),
       body: RefreshIndicator(
-          onRefresh: _refreshData, child: FeedBuilder(quantity: _quantity)),
+          onRefresh: _refreshData,
+          child: FeedBuilder(quantity: _quantity, imagesFuture: _imagesFuture)),
       bottomNavigationBar: const BottomNavigation(),
     );
   }
