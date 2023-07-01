@@ -28,7 +28,7 @@ class FeedBuilder extends StatelessWidget {
                   child: Container(
                     color: const Color.fromARGB(255, 245, 221, 248),
                     child: ListTile(
-                      contentPadding: EdgeInsets.zero,
+                        contentPadding: EdgeInsets.zero,
                         title: Column(
                           children: [
                             SizedBox(
@@ -50,10 +50,15 @@ class FeedBuilder extends StatelessWidget {
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ImageScreen(apod: apod)))),
+                                builder: (context) =>
+                                    ImageScreen(apod: apod)))),
                   ),
                 );
               });
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text('Error: ${snapshot.error}'),
+          );
         } else {
           return const Center(
             child: Text('No images available.'),
