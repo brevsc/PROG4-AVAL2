@@ -23,33 +23,36 @@ class FeedBuilder extends StatelessWidget {
               itemCount: quantity ?? 20,
               itemBuilder: (context, index) {
                 final apod = images[index];
-                return ListTile(
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                        width: double.infinity,
-                        height: 300,
-                        child: Image.network(
-                          apod.imageUrl,
-                          fit: BoxFit.cover,
-                        )),
-                        Text(apod.title),
-                        Text(apod.date),
-                      ],
-                    ),
-                    // subtitle: Text(apod.date),
-                    // leading: SizedBox(
-                    //     width: 150,
-                    //     height: 300,
-                    //     child: Image.network(
-                    //       apod.imageUrl,
-                    //       fit: BoxFit.cover,
-                    //     )),
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ImageScreen(apod: apod))));
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    color: const Color.fromARGB(255, 245, 221, 248),
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                        title: Column(
+                          children: [
+                            SizedBox(
+                                width: double.infinity,
+                                height: 300,
+                                child: Image.network(
+                                  apod.imageUrl,
+                                  fit: BoxFit.fill,
+                                )),
+                          ],
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(apod.title),
+                            Text(apod.date),
+                          ],
+                        ),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ImageScreen(apod: apod)))),
+                  ),
+                );
               });
         } else {
           return const Center(
